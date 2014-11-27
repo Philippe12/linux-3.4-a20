@@ -93,3 +93,6 @@ arch/arm/mach-sun7i/pm/standby/super/resume/*.code
 arch/arm/mach-sun7i/pm/standby/super/suspend/*.code
 modules/nand/Module.symvers
 modules/example/Module.symvers
+
+
+libnand
