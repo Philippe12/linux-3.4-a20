@@ -95,4 +95,4 @@ modules/nand/Module.symvers
 modules/example/Module.symvers
 
 
-libnand
+libnand.a
