@@ -165,7 +165,7 @@ static struct ctp_config_info config_info = {
 	.input_type = CTP_TYPE,
 };
 
-static u32 debug_mask = 255;
+static u32 debug_mask = 0;
 #define dprintk(level_mask,fmt,arg...)    if(unlikely(debug_mask & level_mask)) \
         printk("[CTP]:"fmt, ## arg)
 module_param_named(debug_mask,debug_mask,int,S_IRUGO | S_IWUSR | S_IWGRP);
@@ -1128,7 +1128,7 @@ static int ilitek_i2c_process_and_report(void)
 			ret = 0;
 	
 			tp_id = buf[0];
-			if (Report_Flag!=0){
+			if (Report_Flag!=0 || true ){
 				//dprintk(DEBUG_INIT,"%s(%d):",__func__,__LINE__);
 				//for (i=0;i<9;i++)
 				//	dprintk(DEBUG_INIT,"%02X,",buf[i]);
@@ -1165,10 +1165,11 @@ static int ilitek_i2c_process_and_report(void)
 							input_event(input, EV_ABS, ABS_MT_POSITION_Y, y+1);
 							input_event(input, EV_ABS, ABS_MT_TOUCH_MAJOR, 1);
 							input_mt_sync(input);
-							dprintk(DEBUG_INIT,"Last Point[%d]= %d, %d\n", buf[0]&0x3F, x, y);
+							dprintk(DEBUG_INIT,"chpo %d Last Point[%d]= %d, %d\n",i, buf[0]&0x3F, x, y);
 							last_id=0;
 						}
 						//input_sync(input);//20120407				
+						input_report_key(input, BTN_TOUCH,  0);
 						input_event(input, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
 						input_mt_sync(input);
 						ret = 1; // stop timer interrupt
@@ -1198,7 +1199,7 @@ static int ilitek_i2c_process_and_report(void)
 							input_event(input, EV_ABS, ABS_MT_POSITION_Y, y+1);
 							input_event(input, EV_ABS, ABS_MT_TOUCH_MAJOR, 1);
 							input_mt_sync(input);
-							dprintk(DEBUG_INIT,"Point[%d]= %d, %d\n", buf[0]&0x3F, x, y);
+							dprintk(DEBUG_INIT,"chpo %d Point[%d]= %d, %d\n",i, buf[0]&0x3F, x, y);
 						}	
 					}
 					break;

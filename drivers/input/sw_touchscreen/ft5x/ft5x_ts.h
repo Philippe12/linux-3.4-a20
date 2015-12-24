@@ -47,7 +47,7 @@ enum ft5x_ts_regs {
 #define FT5X06_UPGRADE_ID_2			0x03
 #define FT5X06_UPGRADE_READID_DELAY 	1
 
-
+#if 0
 #ifndef ABS_MT_TOUCH_MAJOR
     #define ABS_MT_TOUCH_MAJOR	0x30	/* touching ellipse */
     #define ABS_MT_TOUCH_MINOR	0x31	/* (omit if circular) */
@@ -59,6 +59,6 @@ enum ft5x_ts_regs {
     #define ABS_MT_TOOL_TYPE	0x37	/* Type of touching device */
     #define ABS_MT_BLOB_ID		0x38	/* Group set of pkts as blob */
 #endif /* ABS_MT_TOUCH_MAJOR */
-
+#endif
 
 #endif
